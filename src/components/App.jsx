@@ -39,15 +39,11 @@ const App = () => {
     <div
       style={{
         height: '100vh',
-        // width: '1200px',
-        // margin: '0 auto',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: '30px',
-        fontSize: 26,
-        color: '#010101',
+        fontSize: 25,
       }}
     >
       <Section title="Please leave feedback">
