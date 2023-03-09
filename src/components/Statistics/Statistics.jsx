@@ -1,24 +1,32 @@
-import s from './Statistics.module.css';
 import PropTypes from 'prop-types';
+import { StyledUl, StyledLi } from './Statistics,styled';
 
-function Statistics({ good, neutral, bad, total, positivePercentage }) {
+const Statistics = ({ good, neutral, bad, total, positivePercentage }) => {
+  const totalFeedback = total();
+  const positiveFeedbackPercentage = positivePercentage().toFixed(0);
+
   return (
-    <ul className={s.list}>
-      <li className={s.item}>Good: {good}</li>
-      <li className={s.item}>Neutral: {neutral}</li>
-      <li className={s.item}>Bad: {bad}</li>
-      <li className={s.item}>Total: {total}</li>
-      <li className={s.item}>Positive feedback: {positivePercentage}%</li>
-    </ul>
+    <div>
+      <StyledUl>
+        <StyledLi>Good: {good}</StyledLi>
+        <StyledLi>Neutral: {neutral}</StyledLi>
+        <StyledLi>Bad: {bad}</StyledLi>
+        <StyledLi>Total: {totalFeedback}</StyledLi>
+        <StyledLi>
+          Positive Feedback:{' '}
+          {totalFeedback > 0 ? positiveFeedbackPercentage : '0'}%
+        </StyledLi>
+      </StyledUl>
+    </div>
   );
-}
-
-Statistics.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired,
-  positivePercentage: PropTypes.number.isRequired,
 };
 
 export default Statistics;
+
+Statistics.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  total: PropTypes.func,
+  positivePercentage: PropTypes.func,
+};

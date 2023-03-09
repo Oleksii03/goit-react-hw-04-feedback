@@ -1,30 +1,27 @@
-import s from './FeedbackOptions.module.css';
 import PropTypes from 'prop-types';
+import { StyledLi, StyledUl } from './FeedbackOptions.styled';
 
-function FeedbackOptions({ options, onLeaveFeedback }) {
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <>
-      <div>
-        {options.map(option => {
+    <div>
+      <StyledUl>
+        {options.map((option, idx) => {
           return (
-            <button
-              type="button"
-              onClick={() => onLeaveFeedback(option)}
-              key={option}
-              className={s.btn}
-            >
-              {option}
-            </button>
+            <StyledLi key={idx}>
+              <button type="button" onClick={() => onLeaveFeedback(option)}>
+                {option.charAt(0).toUpperCase() + option.slice(1)}
+              </button>
+            </StyledLi>
           );
         })}
-      </div>
-    </>
+      </StyledUl>
+    </div>
   );
-}
-
-FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  onLeaveFeedback: PropTypes.func.isRequired,
 };
 
 export default FeedbackOptions;
+
+FeedbackOptions.propTypes = {
+  onLeaveFeedback: PropTypes.func,
+  options: PropTypes.array,
+};
